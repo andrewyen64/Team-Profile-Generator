@@ -2,7 +2,7 @@
 
 [![Generic badge](https://img.shields.io/badge/license-GNU_v3.0-brightgreen)](https://shields.io/)
 
-![Generated Team Profile HTML page Example](./assets/TPG-example.PNG)
+![Generated Team Profile HTML page Example](./Assets/TPG-example.PNG)
 
 ## Description
 
@@ -37,7 +37,7 @@ Link to the walkthrough video: <https://youtu.be/06g0z0k3eMg>
 
 Enter 'npm run test' in the terminal/command-line.
 
-![npm run test Results](./assets/npm-run-test.PNG)
+![npm run test Results](./Assets/npm-run-test.PNG)
 
 ## Questions
 
