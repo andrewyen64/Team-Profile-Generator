@@ -10,15 +10,8 @@ const outputPath = path.join(OUTPUT_DIR, "employees.html");
 
 const render = require("./lib/htmlRenderer");
 
-// Write code to use inquirer to gather information about the development employees members,
-// and to create objects for each employees member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
 // Prompts user to select which type of profile to add
-const employees = [];
+const roster = [];
 
 function chooseNewEmployee() {
     inquirer.prompt([
@@ -36,17 +29,17 @@ function chooseNewEmployee() {
         } else if (val.name === "Manager") {
             addManager();
         } else if (val.name === "None, all done!") {
-            generateHTML(outputPath, render(employees));
+            generateHTML(outputPath, render(roster));
         };
     });
 }
 
-// Funciton to add an Enginner profile
+// Function to add an Engineer profile
 function addEngineer() {
     return inquirer.prompt([
         {
             type: "input",
-            mesasge: "What is the name of the engienner?",
+            message: "What is the name of the engineer?",
             name: "name",
         },
         {
@@ -66,8 +59,8 @@ function addEngineer() {
         },
     ]).then(function(answer) {
         let engineer = new Engineer(answer.name, answer.id, answer.email, answer.github)
-        employees.push(engineer);
-        chooseNewEmployee()
+        roster.push(engineer);
+        chooseNewEmployee();
     });
 }
 
@@ -96,9 +89,8 @@ function addIntern() {
         },
     ]).then(function(answer) {
         let intern = new Intern(answer.name, answer.id, answer.email, answer.school)
-        employees.push(intern);
-        chooseNewEmployee ()
-        
+        roster.push(intern);
+        chooseNewEmployee ();        
     });
 }
 
@@ -127,17 +119,12 @@ function addManager() {
         },
     ]).then(function(answer) {
         let manager = new Manager(answer.name, answer.id, answer.email, answer.number)
-        employees.push(manager);
-
-        chooseNewEmployee()
+        roster.push(manager);
+        chooseNewEmployee();
     });
 }
 
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `employees.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-
-//Function to create README file
+// Function to generate the HTML file
 function generateHTML(fileName, data) {
     fs.writeFile(fileName, data, "utf8", function (err) {
         if (err) {
@@ -148,13 +135,3 @@ function generateHTML(fileName, data) {
 };
 
 chooseNewEmployee();
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
